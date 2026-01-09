@@ -4,11 +4,437 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Knowledge Vault | Structured Thinking</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* --- CSS STYLES --- */
+    :root {
+      --primary-green: #4da674;
+      --dark-navy: #051a2c;
+      --text-gray: #5e6c79;
+      --light-bg: #f8f7f3;
+      --accent-red: #ff5e5e;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1a2b3c;
+      line-height: 1.6;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 8%;
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--dark-navy);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo span {
+      color: var(--primary-green);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-size: 14px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-green);
+    }
+
+    .btn-access-top {
+      background: var(--primary-green);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 85vh;
+      /* Overlay to make text readable over the background image */
+      background: linear-gradient(rgba(5, 26, 44, 0.75), rgba(5, 26, 44, 0.75)), url('Home.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 0 20px;
+    }
+
+    .badge {
+      background: #fff;
+      color: var(--primary-green);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-bottom: 25px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .hero h1 {
+      font-size: 52px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      line-height: 1.2;
+    }
+
+    .hero h1 span {
+      color: var(--primary-green);
+    }
+
+    .hero p {
+      max-width: 700px;
+      font-size: 18px;
+      opacity: 0.9;
+      margin-bottom: 35px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 15px;
+    }
+
+    .btn-main {
+      background: var(--primary-green);
+      color: white;
+      padding: 14px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .btn-outline {
+      border: 1px solid white;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* Pain Points Section */
+    .pain-points {
+      padding: 100px 8%;
+      text-align: center;
+    }
+
+    .pain-points h2 {
+      font-size: 38px;
+      color: var(--dark-navy);
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: var(--text-gray);
+      margin-bottom: 60px;
+      font-size: 16px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      padding: 45px 25px;
+      border: 1px solid #f0f0f0;
+      border-radius: 12px;
+      transition: 0.3s ease;
+      text-align: center;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .icon-box {
+      width: 55px;
+      height: 55px;
+      background: var(--accent-red);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 25px;
+    }
+
+    .icon-box img {
+      width: 28px;
+      filter: brightness(0) invert(1);
+    }
+
+    /* Makes the icon white */
+    .card h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: var(--dark-navy);
+    }
+
+    .card p {
+      color: var(--text-gray);
+      font-size: 14px;
+    }
+
+    /* Solution Section */
+    .solution {
+      display: flex;
+      align-items: center;
+      padding: 100px 8%;
+      gap: 80px;
+      flex-wrap: wrap;
+    }
+
+    .solution-img {
+      flex: 1;
+      min-width: 350px;
+    }
+
+    .solution-img img {
+      width: 100%;
+      height: auto;
+    }
+
+    .solution-text {
+      flex: 1;
+      min-width: 350px;
+    }
+
+    .solution-text h4 {
+      color: var(--primary-green);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+
+    .solution-text h2 {
+      font-size: 42px;
+      color: var(--dark-navy);
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .solution-text p {
+      color: var(--text-gray);
+      margin-bottom: 30px;
+      font-size: 16px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 18px;
+      font-weight: 500;
+      font-size: 15px;
+      text-align: left;
+    }
+
+    .check-item::before {
+      content: '✔';
+      color: var(--primary-green);
+      font-weight: bold;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 60px 8% 100px;
+    }
+
+    .cta-box {
+      background: var(--light-bg);
+      border-radius: 20px;
+      padding: 80px 40px;
+      text-align: center;
+    }
+
+    .cta-box h2 {
+      font-size: 42px;
+      color: var(--dark-navy);
+      margin-bottom: 20px;
+    }
+
+    .cta-box p {
+      color: var(--text-gray);
+      margin-bottom: 40px;
+    }
+
+    .btn-large {
+      background: var(--primary-green);
+      color: white;
+      padding: 18px 40px;
+      border-radius: 8px;
+      font-size: 18px;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+
+    .btn-large:hover {
+      background: #3d8a5f;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark-navy);
+      color: white;
+      padding: 60px 8% 30px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .socials {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      font-size: 13px;
+      opacity: 0.5;
+    }
+  </style>
 </head>
 
 <body>
-  hy how are you
+
+  <nav>
+    <div class="logo">KV <span>Knowledge Vault</span></div>
+    <ul class="nav-links">
+      <li><a href="#">Features</a></li>
+      <li><a href="#">How It Works</a></li>
+      <li><a href="#">Why It's Different</a></li>
+    </ul>
+    <button class="btn-access-top">Get Early Access</button>
+  </nav>
+
+  <header class="hero">
+    <div class="badge">● Early Access Now Open</div>
+    <h1>Structured Thinking, <br><span>Not Just Note-Taking.</span></h1>
+    <p>A private space to store notes, links, and learning summaries—designed to help you think clearly, connect ideas,
+      and turn learning into long-term knowledge.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn-main">Start Building Your Vault →</a>
+      <a href="#" class="btn-outline">See How It Works</a>
+    </div>
+  </header>
+
+  <section class="pain-points">
+    <h2>Notes Don't Fail, Structure Does.</h2>
+    <p class="subtitle">You're not bad at learning. Your tools just weren't built for how knowledge actually works.</p>
+
+    <div class="grid">
+      <div class="card">
+        <div class="icon-box"><img src="Info.png" alt="Notes"></div>
+        <h3>Scattered Notes</h3>
+        <p>Your ideas live in 10 different apps, none of them connected.</p>
+      </div>
+      <div class="card">
+        <div class="icon-box"><img src="Info.png" alt="Bookmarks"></div>
+        <h3>Bookmark Overload</h3>
+        <p>Hundreds of saved links you'll never revisit or remember.</p>
+      </div>
+      <div class="card">
+        <div class="icon-box"><img src="Info.png" alt="Idea"></div>
+        <h3>No Idea Connections</h3>
+        <p>Insights stay isolated, never building into bigger understanding.</p>
+      </div>
+      <div class="card">
+        <div class="icon-box"><img src="Info.png" alt="Forgot"></div>
+        <h3>Forgetting What You Learned</h3>
+        <p>Knowledge fades because there's no system to retain it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="solution">
+    <div class="solution-img">
+      <img src="knowledge.png" alt="The Solution Diagram">
+    </div>
+    <div class="solution-text">
+      <h4>THE SOLUTION</h4>
+      <h2>Your Second Brain, <br>Structured By Design.</h2>
+      <p>Personal Knowledge Vault isn't another note-taking app. It's a thinking environment where every note, link, and
+        summary becomes part of an interconnected web of understanding.</p>
+
+      <div class="check-item">Capture ideas with structure built-in from day one</div>
+      <div class="check-item">Connect related concepts automatically as you write</div>
+      <div class="check-item">Build lasting knowledge through reflection prompts</div>
+      <div class="check-item">Find anything instantly with semantic search</div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-box">
+      <h2>Ready To Think More Clearly?</h2>
+      <p>Join thousands of learners who are building their personal knowledge vaults.<br>Start free, no credit card
+        required.</p>
+      <button class="btn-large">Get Early Access →</button>
+      <p style="margin-top: 15px; font-size: 13px; opacity: 0.7;">Free during early access • No credit card needed</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="logo" style="color:white;">KV <span>Knowledge Vault</span></div>
+      <div class="socials">
+        <span>Social Links</span>
+      </div>
+    </div>
+    <p class="copyright">© 2026 Personal Knowledge Vault. All rights reserved.</p>
+  </footer>
+
 </body>
 
 </html>
